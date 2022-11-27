@@ -75,6 +75,7 @@ public class ComunicadorBanco extends Thread{
             while (this.ativo) {
                 try {
                     cliente = server.accept();
+                    gerenteConta = server.accept();
                     listaClientes.put(this.portaRemotaClienteDesc(), cliente);
                     System.out.println("Alguem se comunicou: " + this.canalRemotoClienteDesc());
                     System.out.println("Alguem se comunicou: " + this.canalRemotoGerenteeDesc());
@@ -213,8 +214,36 @@ public class ComunicadorBanco extends Thread{
             e.printStackTrace();
         }
     }
+    
+    public void Mensagem_Extrato(SocketChannel canal, String agencia, String conta, String nome, String cpf, int conexao_porta) {
+        try {
+           
+          
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void Mensagem_Cliente(SocketChannel canal, String agencia, String conta, String nome, String cpf, float valor, int conexao_porta) {
+        try {
+           
+          
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void Mensagem_Gerente(SocketChannel canal, String conta, String descricao, int conexao_porta) {
+        try {
+           
+          
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
      
-    public void Mensagem_Conta_Bancari(SocketChannel canal, String agencia, String numero_conta, String nomeCliente, String cpf) {
+    public void Mensagem_Conta_Bancaria(SocketChannel canal, String agencia, String numero_conta, String nomeCliente, String cpf) {
         try {
            
           

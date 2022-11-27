@@ -134,7 +134,7 @@ public class Usuario extends Thread{
             this.cpf = this.entradaDados.next();
             System.out.println("Informe o valor para deposito: ");
             this.deposito = this.entradaDados.nextFloat();
-            //this.canalServidor.Mensagem_Conta_Bancari(this.canalServidor.getSocket(), conta, valorDeposito, this.porta_conexao);
+            this.canalServidor.Mensagem_Cliente(this.canalServidor.getSocket(), this.agencia, this.conta, this.nome, this. cpf, this.deposito, this.porta_conexao);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -153,7 +153,7 @@ public class Usuario extends Thread{
             this.cpf = this.entradaDados.next();
             System.out.println("Informe o valor para deposito: ");
             this.saque = this.entradaDados.nextFloat();
-            //this.canalServidor.(this.canalServidor.getSocket(), conta, valorSaque, this.porta_conexao);
+            this.canalServidor.Mensagem_Cliente(this.canalServidor.getSocket(), this.agencia, this.conta, this.nome, this. cpf, this.saque, this.porta_conexao);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -171,7 +171,7 @@ public class Usuario extends Thread{
             this.nome = this.entradaDados.next();
             System.out.println("Informe seu CPF: ");
             this.cpf = this.entradaDados.next();
-            //this.canalServidor.(this.canalServidor.getSocket(), conta, this.porta_conexao);
+            this.canalServidor.Mensagem_Extrato(this.canalServidor.getSocket(), this.agencia, this.conta, this.nome, this. cpf, this.porta_conexao);
 
 
         } catch (Exception e) {

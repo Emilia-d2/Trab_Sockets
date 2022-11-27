@@ -15,7 +15,7 @@ import java.util.concurrent.BlockingQueue;
  */
 public class RecebeDados extends Thread{
     
-     private boolean recebendo_dados;
+    private boolean recebendo_dados;
     SocketChannel cliente;
     SocketChannel gerente;
     BlockingQueue<ByteBuffer> entrada_dados;

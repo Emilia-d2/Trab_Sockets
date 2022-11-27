@@ -20,6 +20,8 @@ public class Gerente extends Thread{
     private short mensagem_tipo;
     private int porta_conexao;
     private Usuario usuario; 
+    private String conta;
+    private String descricao;
     
     public static void main(String[] args) {
         Gerente gerente = new Gerente();
@@ -127,10 +129,10 @@ public class Gerente extends Thread{
         try {
             this.entradaDados = new Scanner(System.in);
             System.out.println("Informe o n° da conta bancaria que deseja criar: ");
-            String conta = this.entradaDados.next();
+            this.conta = this.entradaDados.next();
             System.out.println("Informe a descrição: ");
-            String descricao = this.entradaDados.next();
-            //this.canalServidor.MsgSend_Deposito(this.canalServidor.getSocket(), conta, valorDeposito, this.porta_conexao);
+            this.descricao = this.entradaDados.next();
+            this.canalServidor.Mensagem_Gerente(this.canalServidor.getSocket(), this.conta, this.descricao, this.porta_conexao);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -140,10 +142,10 @@ public class Gerente extends Thread{
         try {
            this.entradaDados = new Scanner(System.in);
             System.out.println("Informe o n° da conta bancaria que deseja consultar: ");
-            String conta = this.entradaDados.next();
+            this.conta = this.entradaDados.next();
             System.out.println("Informe a descrição: ");
-            String descricao = this.entradaDados.next();
-            //this.canalServidor.MsgSend_Deposito(this.canalServidor.getSocket(), conta, valorDeposito, this.porta_conexao);
+            this.descricao = this.entradaDados.next();
+            this.canalServidor.Mensagem_Gerente(this.canalServidor.getSocket(), this.conta, this.descricao, this.porta_conexao);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -154,10 +156,10 @@ public class Gerente extends Thread{
         try {
             this.entradaDados = new Scanner(System.in);
             System.out.println("Informe o n° da conta bancaria que deseja atualizar: ");
-            String conta = this.entradaDados.next();
+            this.conta = this.entradaDados.next();
             System.out.println("Informe a descrição: ");
-            String descricao = this.entradaDados.next();
-            //this.canalServidor.MsgSend_Deposito(this.canalServidor.getSocket(), conta, valorDeposito, this.porta_conexao);
+            this.descricao = this.entradaDados.next();
+            this.canalServidor.Mensagem_Gerente(this.canalServidor.getSocket(), this.conta, this.descricao, this.porta_conexao);
 
 
         } catch (Exception e) {
@@ -169,10 +171,10 @@ public class Gerente extends Thread{
         try {
             this.entradaDados = new Scanner(System.in);
             System.out.println("Informe o n° da conta bancaria que deseja deletar: ");
-            String conta = this.entradaDados.next();
+            this.conta = this.entradaDados.next();
             System.out.println("Informe a descrição: ");
-            String descricao = this.entradaDados.next();
-            //this.canalServidor.MsgSend_Deposito(this.canalServidor.getSocket(), conta, valorDeposito, this.porta_conexao);
+            this.descricao = this.entradaDados.next();
+            this.canalServidor.Mensagem_Gerente(this.canalServidor.getSocket(), this.conta, this.descricao, this.porta_conexao);
 
 
         } catch (Exception e) {

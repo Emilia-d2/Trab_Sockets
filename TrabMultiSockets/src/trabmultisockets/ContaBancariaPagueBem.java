@@ -144,13 +144,13 @@ public class ContaBancariaPagueBem extends Thread{
 
     public void tratamentoMensagemContaBancaria(String agencia, String numero_conta, String nomeCliente, String cpf, int conexao_porta) {
         try {
-           /* if (this.listaDeContas.containsKey(numeroConta)) {
+           if (this.listaDeContas.containsKey(numeroConta)) {
                 this.listaDeContas.get(numeroConta).setConexao_porta(conexao_porta);
 
                 if (this.canalDoServidor.getClienteSocketLista().containsKey(conexao_porta)) {
-                    this.canalDoServidor.Mensagem_Conta_Bancari(this.canalDoServidor.getClienteSocketLista().get(conexao_porta), this.numeroConta, this.agencia, this.nomeUsuario,  this.cpf);
+                    this.canalDoServidor.Mensagem_Conta_Bancaria(this.canalDoServidor.getClienteSocketLista().get(conexao_porta), this.numeroConta, this.agencia, this.nomeUsuario, this.cfp);
                 }
-            }*/
+            }
             
         } catch (Exception e) {
             e.printStackTrace();

@@ -25,6 +25,7 @@ public class Usuario extends Thread{
     private String cpf;
     private float deposito;
     private float saque;
+    private float valorTotal;
           
 
     public static void main(String[] args) {
@@ -171,7 +172,7 @@ public class Usuario extends Thread{
             this.nome = this.entradaDados.next();
             System.out.println("Informe seu CPF: ");
             this.cpf = this.entradaDados.next();
-            this.canalServidor.Mensagem_Extrato(this.canalServidor.getSocket(), this.agencia, this.conta, this.nome, this. cpf, this.porta_conexao);
+            this.canalServidor.Mensagem_Extrato_Cliente(this.canalServidor.getSocket(), this.agencia, this.conta, this.nome, this. cpf, this.valorTotal, this.porta_conexao);
 
 
         } catch (Exception e) {

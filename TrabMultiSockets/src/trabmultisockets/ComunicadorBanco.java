@@ -7,6 +7,7 @@ package trabmultisockets;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
+import java.nio.channels.ClosedChannelException;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.LinkedHashMap;
@@ -20,7 +21,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class ComunicadorBanco extends Thread{
 
-  private String IP;
+    private String IP;
     private int PORTA = ConfiguracoesConta.PORTA_SERV;
     private SocketChannel gerenteConta = null;
     private SocketChannel cliente = null;
@@ -199,6 +200,13 @@ public class ComunicadorBanco extends Thread{
     
     public void Mensagem_Conexao_Server(SocketChannel canal, int conexao_porta) {
         try {
+            int tamMsg = 2 + 4 + 4;
+            ByteBuffer writeBuffer = ByteBuffer.allocateDirect(tamMsg);
+            writeBuffer.putShort(this.PORTA_CONEXAO);
+            writeBuffer.putInt(tamMsg);
+            writeBuffer.putInt(conexao_porta);
+            writeBuffer.rewind();
+            Canal(canal, writeBuffer);
           
         } catch (Exception e) {
             e.printStackTrace();
@@ -206,7 +214,31 @@ public class ComunicadorBanco extends Thread{
     }
 
     
-    public void Mensagem_Agencia(SocketChannel canal, String conta, String descricao) {
+    public void Mensagem_Cria_Conta(SocketChannel canal, String conta, String descricao) {
+        try {
+           
+          
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void Mensagem_Atualiza_Conta(SocketChannel canal, String conta, String descricao) {
+        try {
+           
+          
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void Mensagem_Ler_Conta(SocketChannel canal, String conta, String descricao) {
+        try {
+           
+          
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void Mensagem_Deleta_Conta(SocketChannel canal, String conta, String descricao) {
         try {
            
           
@@ -215,14 +247,6 @@ public class ComunicadorBanco extends Thread{
         }
     }
     
-    public void Mensagem_Extrato(SocketChannel canal, String agencia, String conta, String nome, String cpf, int conexao_porta) {
-        try {
-           
-          
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     
     public void Mensagem_Cliente(SocketChannel canal, String agencia, String conta, String nome, String cpf, float valor, int conexao_porta) {
         try {
@@ -243,7 +267,7 @@ public class ComunicadorBanco extends Thread{
     }
     
      
-    public void Mensagem_Conta_Bancaria(SocketChannel canal, String agencia, String numero_conta, String nomeCliente, String cpf) {
+    public void Mensagem_Saque(SocketChannel canal, String agencia, String numero_conta, String nomeCliente, String cpf) {
         try {
            
           
@@ -251,10 +275,52 @@ public class ComunicadorBanco extends Thread{
             e.printStackTrace();
         }
     }
-
-    public void channelWrite(SocketChannel canal, ByteBuffer writeBuffer) {
+    
+    public void Mensagem_Deposito(SocketChannel canal, String agencia, String numero_conta, String nomeCliente, String cpf) {
         try {
-         
+           
+          
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+     
+    public void Mensagem_Extrato(SocketChannel canal, String agencia, String numero_conta, String nomeCliente, String cpf) {
+        try {
+           
+          
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void Mensagem_Extrato_Cliente(SocketChannel canal, String agencia, String numero_conta, String nomeCliente, String cpf, float Valor_total, int porta) {
+        try {
+           
+          
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+
+    public void Canal(SocketChannel canal, ByteBuffer writeBuffer) {
+        try {
+            long nbytes = 0;
+            long toWrite = writeBuffer.remaining();
+            try {
+                while (nbytes != toWrite) {
+                    nbytes += canal.write(writeBuffer);
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            writeBuffer.rewind();
         } catch (Exception e) {
             e.printStackTrace();
         }

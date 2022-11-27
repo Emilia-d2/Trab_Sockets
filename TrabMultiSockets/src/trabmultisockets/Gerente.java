@@ -146,7 +146,15 @@ public class Gerente extends Thread{
             System.out.println("Informe a descrição: ");
             this.descricao = this.entradaDados.next();
             this.canalServidor.Mensagem_Gerente(this.canalServidor.getSocket(), this.conta, this.descricao, this.porta_conexao);
-
+        
+            
+            String contaConsultada = this.conta;
+            
+            if(contaConsultada != null){
+                System.out.println("A conta que você consultou é essa: " + contaConsultada);
+            }else{
+                System.out.println("Não foi possível encontrar a essa conta consultada");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -161,7 +169,18 @@ public class Gerente extends Thread{
             this.descricao = this.entradaDados.next();
             this.canalServidor.Mensagem_Gerente(this.canalServidor.getSocket(), this.conta, this.descricao, this.porta_conexao);
 
-
+        String contaAtualizar = this.conta;
+        if(contaAtualizar != null){
+            this.entradaDados = new Scanner(System.in);
+            System.out.println("Atualize o n° da conta : ");
+            String atualizaConta = this.entradaDados.next();
+            System.out.println("Atualize a descrição: ");
+            this.descricao = this.entradaDados.next();
+            this.conta = atualizaConta;
+            this.canalServidor.Mensagem_Gerente(this.canalServidor.getSocket(), this.conta, this.descricao, this.porta_conexao);
+        }else{
+            System.out.println("Não foi possível atualizar sua conta! Tente novamente mais tarde");
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -175,7 +194,15 @@ public class Gerente extends Thread{
             System.out.println("Informe a descrição: ");
             this.descricao = this.entradaDados.next();
             this.canalServidor.Mensagem_Gerente(this.canalServidor.getSocket(), this.conta, this.descricao, this.porta_conexao);
-
+            
+        String deletarConta = this.conta;
+        if(deletarConta != null){
+            this.conta = "";
+            System.out.println("Informe a descrição: ");
+            this.descricao = this.entradaDados.next();
+            this.canalServidor.Mensagem_Gerente(this.canalServidor.getSocket(), this.conta, this.descricao, this.porta_conexao);
+            
+        }
 
         } catch (Exception e) {
             e.printStackTrace();

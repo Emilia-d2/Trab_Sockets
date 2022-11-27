@@ -59,7 +59,7 @@ public class AgenciaBancariaPagueBem extends Thread{
                         System.out.println("Número da Conta Bancária: " + this.numeroConta + "|");
                         System.out.println("Descrição: " + this.descricao + "                 |");
                         System.out.println("--------------------------------------------------");
-                        this.tratamentoMensagemAgenciaBancria(this.numeroConta, this.descricao, this.conexao_porta);
+                        this.tratamentoMensagemCriaConta(this.numeroConta, this.descricao, this.conexao_porta);
                         break;
                     case ConfiguracoesConta.ATUALIZAR_CONTA:
                         this.numeroConta = buf.toString();
@@ -71,7 +71,7 @@ public class AgenciaBancariaPagueBem extends Thread{
                         System.out.println("Número da Conta Bancária: " + this.numeroConta + "|");
                         System.out.println("Descrição: " + this.descricao + "                 |");
                         System.out.println("--------------------------------------------------");
-                        this.tratamentoMensagemAgenciaBancria(this.numeroConta, this.descricao, this.conexao_porta);
+                        this.tratamentoMensagemAtualizaConta(this.numeroConta, this.descricao, this.conexao_porta);
                         break;
                     case ConfiguracoesConta.LER_CONTA:
                         this.numeroConta = buf.toString();
@@ -83,7 +83,7 @@ public class AgenciaBancariaPagueBem extends Thread{
                         System.out.println("Número da Conta Bancária: " + this.numeroConta + "|");
                         System.out.println("Descrição: " + this.descricao + "                 |");
                         System.out.println("--------------------------------------------------");
-                        this.tratamentoMensagemAgenciaBancria(this.numeroConta, this.descricao, this.conexao_porta);
+                        this.tratamentoMensagemLerConta(this.numeroConta, this.descricao, this.conexao_porta);
                         break;
                     case ConfiguracoesConta.DELETAR_CONTA:
                         this.numeroConta = buf.toString();
@@ -95,7 +95,7 @@ public class AgenciaBancariaPagueBem extends Thread{
                         System.out.println("Número da Conta Bancária: " + this.numeroConta + "|");
                         System.out.println("Descrição: " + this.descricao + "                 |");
                         System.out.println("--------------------------------------------------");
-                        this.tratamentoMensagemAgenciaBancria(this.numeroConta, this.descricao, this.conexao_porta);
+                        this.tratamentoMensagemDeletaConta(this.numeroConta, this.descricao, this.conexao_porta);
                         break;
                     default:
                         System.out.println("Cliente =>");
@@ -134,13 +134,13 @@ public class AgenciaBancariaPagueBem extends Thread{
         }
     }
     
-    public void tratamentoMensagemAgenciaBancria(String contaBancaria, String descricao, int conexao_porta) {
+    public void tratamentoMensagemCriaConta(String contaBancaria, String descricao, int conexao_porta) {
         try {
             if (this.listaDeContas.containsKey(numeroConta)) {
                 this.listaDeContas.get(numeroConta).setConexao_porta(conexao_porta);
 
                 if (this.canalDoServidor.getClienteSocketLista().containsKey(conexao_porta)) {
-                    this.canalDoServidor.Mensagem_Agencia(this.canalDoServidor.getClienteSocketLista().get(conexao_porta), this.numeroConta, this.descricao);
+                    this.canalDoServidor.Mensagem_Cria_Conta(this.canalDoServidor.getClienteSocketLista().get(conexao_porta), this.numeroConta, this.descricao);
                 }
             }
 
@@ -148,6 +148,52 @@ public class AgenciaBancariaPagueBem extends Thread{
             e.printStackTrace();
         }
     }
+    
+    public void tratamentoMensagemAtualizaConta(String contaBancaria, String descricao, int conexao_porta) {
+        try {
+            if (this.listaDeContas.containsKey(numeroConta)) {
+                this.listaDeContas.get(numeroConta).setConexao_porta(conexao_porta);
+
+                if (this.canalDoServidor.getClienteSocketLista().containsKey(conexao_porta)) {
+                    this.canalDoServidor.Mensagem_Atualiza_Conta(this.canalDoServidor.getClienteSocketLista().get(conexao_porta), this.numeroConta, this.descricao);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void tratamentoMensagemLerConta(String contaBancaria, String descricao, int conexao_porta) {
+        try {
+            if (this.listaDeContas.containsKey(numeroConta)) {
+                this.listaDeContas.get(numeroConta).setConexao_porta(conexao_porta);
+
+                if (this.canalDoServidor.getClienteSocketLista().containsKey(conexao_porta)) {
+                    this.canalDoServidor.Mensagem_Ler_Conta(this.canalDoServidor.getClienteSocketLista().get(conexao_porta), this.numeroConta, this.descricao);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void tratamentoMensagemDeletaConta(String contaBancaria, String descricao, int conexao_porta) {
+        try {
+            if (this.listaDeContas.containsKey(numeroConta)) {
+                this.listaDeContas.get(numeroConta).setConexao_porta(conexao_porta);
+
+                if (this.canalDoServidor.getClienteSocketLista().containsKey(conexao_porta)) {
+                    this.canalDoServidor.Mensagem_Deleta_Conta(this.canalDoServidor.getClienteSocketLista().get(conexao_porta), this.numeroConta, this.descricao);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 
     public String getDescricao() {
         return descricao;

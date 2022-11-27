@@ -78,8 +78,8 @@ public class ComunicadorBanco extends Thread{
                     cliente = server.accept();
                     gerenteConta = server.accept();
                     listaClientes.put(this.portaRemotaClienteDesc(), cliente);
-                    System.out.println("Alguem se comunicou: " + this.canalRemotoClienteDesc());
-                    System.out.println("Alguem se comunicou: " + this.canalRemotoGerenteeDesc());
+                    System.out.println("Cliente se comunicou: " + this.canalRemotoClienteDesc());
+                    System.out.println("Gerente se comunicou: " + this.canalRemotoGerenteeDesc());
                     Mensagem_Conexao_Server(cliente, this.portaRemotaClienteDesc());
                     Mensagem_Conexao_Server(gerenteConta, this.portaRemotaGerenteDesc());
                     leituraRecebedor();
